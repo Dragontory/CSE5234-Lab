@@ -4,13 +4,12 @@ import { useNavigate } from 'react-router-dom';
 export default function ShippingEntry() {
   const [name, setName] = useState('');
   const [addressLine1, setAddressLine1] = useState('');
-  const [addressLine2, setAddressLine2] = useState(''); // required per your request
+  const [addressLine2, setAddressLine2] = useState('');
   const [city, setCity] = useState('');
   const [usState, setUsState] = useState('');
   const [zip, setZip] = useState('');
   const navigate = useNavigate();
 
-  // Prefill from sessionStorage
   useEffect(() => {
     try {
       const cached = JSON.parse(sessionStorage.getItem('shipping') || 'null');
@@ -51,97 +50,88 @@ export default function ShippingEntry() {
   }
 
   return (
-    <div style={{ padding: 12 }}>
-      <h2>Shipping Entry</h2>
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Name:{' '}
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Jane Q. Student"
-              required
-              autoComplete="name"
-            />
-          </label>
+    <div className="container">
+      <h2 style={{ marginBottom: '16px', color: '#0b3d91' }}>Shipping Entry</h2>
+      <form className="form-box" onSubmit={handleSubmit}>
+        <div className="form-field">
+          <label>Name:</label>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Jane Q. Student"
+            required
+            autoComplete="name"
+          />
         </div>
 
-        <div>
-          <label>
-            Address Line 1:{' '}
-            <input
-              value={addressLine1}
-              onChange={(e) => setAddressLine1(e.target.value)}
-              placeholder="123 College Ave"
-              required
-              autoComplete="address-line1"
-            />
-          </label>
+        <div className="form-field">
+          <label>Address Line 1:</label>
+          <input
+            value={addressLine1}
+            onChange={(e) => setAddressLine1(e.target.value)}
+            placeholder="123 College Ave"
+            required
+            autoComplete="address-line1"
+          />
         </div>
 
-        <div>
-          <label>
-            Address Line 2:{' '}
-            <input
-              value={addressLine2}
-              onChange={(e) => setAddressLine2(e.target.value)}
-              placeholder="Apt / Unit"
-              required
-              autoComplete="address-line2"
-            />
-          </label>
+        <div className="form-field">
+          <label>Address Line 2:</label>
+          <input
+            value={addressLine2}
+            onChange={(e) => setAddressLine2(e.target.value)}
+            placeholder="Apt / Unit"
+            required
+            autoComplete="address-line2"
+          />
         </div>
 
-        <div>
-          <label>
-            City:{' '}
-            <input
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              placeholder="Columbus"
-              required
-              autoComplete="address-level2"
-            />
-          </label>
+        <div className="form-field">
+          <label>City:</label>
+          <input
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Columbus"
+            required
+            autoComplete="address-level2"
+          />
         </div>
 
-        <div>
-          <label>
-            State:{' '}
-            <input
-              value={usState}
-              onChange={(e) => setUsState(e.target.value.toUpperCase())}
-              placeholder="OH"
-              maxLength={2}
-              required
-              pattern="[A-Za-z]{2}"
-              title="Two-letter state code (e.g., OH, NY)"
-              autoComplete="address-level1"
-            />
-          </label>
+        <div className="form-field">
+          <label>State:</label>
+          <input
+            value={usState}
+            onChange={(e) => setUsState(e.target.value.toUpperCase())}
+            placeholder="OH"
+            maxLength={2}
+            required
+            pattern="[A-Za-z]{2}"
+            title="Two-letter state code (e.g., OH, NY)"
+            autoComplete="address-level1"
+          />
         </div>
 
-        <div>
-          <label>
-            ZIP:{' '}
-            <input
-              value={zip}
-              onChange={(e) => setZip(e.target.value)}
-              placeholder="43210"
-              required
-              pattern="[0-9]{5}(-[0-9]{4})?"
-              title="5-digit ZIP or ZIP+4 (e.g., 43210 or 43210-1234)"
-              inputMode="numeric"
-              autoComplete="postal-code"
-            />
-          </label>
+        <div className="form-field">
+          <label>ZIP:</label>
+          <input
+            value={zip}
+            onChange={(e) => setZip(e.target.value)}
+            placeholder="43210"
+            required
+            pattern="[0-9]{5}(-[0-9]{4})?"
+            title="5-digit ZIP or ZIP+4"
+            inputMode="numeric"
+            autoComplete="postal-code"
+          />
         </div>
 
-        <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
-          <button type="button" onClick={() => navigate('/purchase')}>Back to Shop</button>
-          <button type="submit">Save & Continue</button>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 16 }}>
+          <button type="button" className="btn" onClick={() => navigate('/purchase')}>
+            Back to Shop
+          </button>
+          <button type="submit" className="primary-action">
+            Save & Continue
+          </button>
         </div>
       </form>
     </div>
