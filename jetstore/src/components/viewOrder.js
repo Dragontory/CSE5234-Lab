@@ -29,7 +29,13 @@ export default function ViewOrder() {
 			<p>{payment.name || 'Not provided'}</p>
 
 			<h3>Shipping</h3>
-			<p>{shipping.name ? `${shipping.name}, ${shipping.address1}, ${shipping.city}` : 'Not provided'}</p>
+			<p>
+				{shipping && shipping.name && shipping.addressLine1 && shipping.city && shipping.state && shipping.zip
+				? `${shipping.name}, ${shipping.addressLine1}${
+					shipping.addressLine2 ? ', ' + shipping.addressLine2 : ''
+					}, ${shipping.city}, ${shipping.state} ${shipping.zip}`
+				: 'Not provided'}
+			 </p>
 
 			<div style={{ marginTop: 12 }}>
 				<button onClick={confirm}>Confirm Order</button>
