@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="120" viewBox="0 0 240 120">
+  <rect width="100%" height="100%" fill="#0b486b" />
+  <g fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    <text x="12" y="30">Aurora Jet</text>
+    <text x="12" y="56" font-size="12">Advanced avionics</text>
+    <text x="12" y="76" font-size="12">Top comfort</text>
+  </g>
+  <polygon points="190,25 220,60 190,95 120,60" fill="#b3e5ff" opacity="0.9" />
+</svg>
