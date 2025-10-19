@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Purchase from './components/purchase';
@@ -12,6 +12,51 @@ import Contact from './components/Contact';
 import CartOverlay from './components/CartOverlay';
 
 function App() {
+  const [cart, setCart] = useState(() => {
+    const savedCart = sessionStorage.getItem('cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  const addToCart = (item, quantity) => {
+    setCart(prevCart => {
+      const existingItem = prevCart.find(ci => ci.id === item.id);
+      if (existingItem) {
+        return prevCart.map(ci =>
+          ci.id === item.id ? { ...ci, qty: ci.qty + quantity } : ci
+        );
+      }
+      return [...prevCart, { ...item, qty: quantity }];
+    });
+    setIsCartOpen(true);
+  };
+
+  const removeFromCart = (id) => {
+    setCart(prevCart => prevCart.filter(ci => ci.id !== id));
+  };
+
+  const updateCartQuantity = (id, newQty) => {
+    if (newQty <= 0) {
+      removeFromCart(id);
+    } else {
+      setCart(prevCart =>
+        prevCart.map(ci => (ci.id === id ? { ...ci, qty: newQty } : ci))
+      );
+    }
+  };
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
+  const closeCart = () => {
+    setIsCartOpen(false);
+  };
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -23,17 +68,25 @@ function App() {
             <Link to="/purchase">Purchase</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
-            <Link to="/purchase/viewOrder">View Order</Link>
           </nav>
-          <CartOverlay />
+          <CartOverlay
+            cart={cart}
+            isOpen={isCartOpen}
+            toggleCart={toggleCart}
+            closeCart={closeCart}
+            updateCartQuantity={updateCartQuantity}
+            removeFromCart={removeFromCart}
+          />
         </header>
-        <main className="container">
+        <main className="container" onClick={closeCart}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/purchase" element={<Purchase />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/purchase" element={<Purchase addToCart={addToCart} />} />
             <Route path="/purchase/paymentEntry" element={<PaymentEntry />} />
             <Route path="/purchase/shippingEntry" element={<ShippingEntry />} />
-            <Route path="/purchase/viewOrder" element={<ViewOrder />} />
+            <Route path="/purchase/viewOrder" element={<ViewOrder cart={cart} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart}/>} />
             <Route path="/purchase/viewConfirmation" element={<Confirmation />} />
           </Routes>
         </main>

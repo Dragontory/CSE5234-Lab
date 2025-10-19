@@ -9,7 +9,7 @@ export default function Home() {
         <p>Premium private jets and aviation solutions. Browse our catalog, customize your order, and fly in style.</p>
         <div className="hero-actions">
           <Link to="/purchase" className="btn primary">Shop Jets</Link>
-          <Link to="/purchase/viewOrder" className="btn">My Cart</Link>
+          <Link to="/contact" className="btn">Contact Us</Link>
         </div>
         <div className="stats">
           <div className="stat">
