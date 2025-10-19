@@ -1,15 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function ViewOrder() {
+export default function ViewOrder({ cart, clearCart }) {
 	const navigate = useNavigate();
-	const cart = JSON.parse(sessionStorage.getItem('cart') || '[]');
 	const payment = JSON.parse(sessionStorage.getItem('payment') || '{}');
 	const shipping = JSON.parse(sessionStorage.getItem('shipping') || '{}');
 
 	const total = cart.reduce((s, it) => s + it.price * it.qty, 0).toFixed(2);
 
 	function confirm() {
+    clearCart();
 		navigate('/purchase/viewConfirmation');
 	}
 

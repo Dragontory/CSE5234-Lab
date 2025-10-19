@@ -57,6 +57,10 @@ function App() {
     setIsCartOpen(false);
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -65,6 +69,7 @@ function App() {
             <Link to="/" className="brand-link">Jetstore</Link>
           </div>
           <nav className="nav-links">
+            <Link to="/">Home</Link>
             <Link to="/purchase">Purchase</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
@@ -86,7 +91,7 @@ function App() {
             <Route path="/purchase" element={<Purchase addToCart={addToCart} />} />
             <Route path="/purchase/paymentEntry" element={<PaymentEntry />} />
             <Route path="/purchase/shippingEntry" element={<ShippingEntry />} />
-            <Route path="/purchase/viewOrder" element={<ViewOrder cart={cart} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart}/>} />
+            <Route path="/purchase/viewOrder" element={<ViewOrder cart={cart} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} clearCart={clearCart} />} />
             <Route path="/purchase/viewConfirmation" element={<Confirmation />} />
           </Routes>
         </main>

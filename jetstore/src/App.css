@@ -53,6 +53,10 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.site-brand {
+  flex-grow: 1;
+}
+
 .site-brand .brand-link {
   color: #fff;
   text-decoration: none;
@@ -60,9 +64,14 @@ body {
   font-size: 1.2rem;
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .nav-links a {
   color: rgba(255, 255, 255, 0.9);
-  margin-left: 12px;
   text-decoration: none;
 }
 
@@ -84,18 +93,45 @@ body {
 /* Home hero */
 .home-hero {
   display: flex;
-  gap: 24px;
+  gap: 48px;
   align-items: center;
   justify-content: space-between;
+  background: #fff;
+  padding: 48px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
 }
 
 .hero-left {
   flex: 1;
 }
 
+.hero-left h1 {
+  font-size: 2.5rem;
+  color: #1a2c4a;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
 .hero-right {
-  flex: 0 0 360px;
+  flex: 0 0 420px;
   text-align: right;
+  position: relative;
+}
+
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, rgba(11, 61, 145, 0.2), rgba(31, 122, 58, 0.2));
+  border-radius: 12px;
+  transform: rotate(-3deg);
+  z-index: 0;
+}
+
+.hero-right img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 .hero-actions {
@@ -258,8 +294,8 @@ body {
 
 /* About / Contact */
 .about-page, .contact-page { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
-.about-page .exec-list { display: flex; gap: 16px; flex-wrap: wrap; }
-.about-page .exec { background: #f9f9f9; border-radius: 8px; padding: 12px; width: calc(50% - 8px); box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
+.about-page .exec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.about-page .exec { background: #f9f9f9; border-radius: 8px; padding: 16px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
 .about-page .exec img { width: 100%; height: auto; border-radius: 6px; margin-bottom: 8px; }
 
 /* Header tweaks */
