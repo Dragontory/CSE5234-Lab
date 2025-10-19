@@ -1,6 +1,6 @@
 # CSE5234-Lab / jetstore
 
-A small Create React App project named `jetstore` used for CSE5234 lab exercises.
+A small Create React App project named `jetstore` used for CSE5234 lab.
 
 ## What this is
 
@@ -96,6 +96,3 @@ npm audit fix
 
 Use `npm audit fix --force` only if you are prepared to test for breaking changes.
 
-## Notes
-
-- This README is a minimal guide to get the app running locally. If you want a CI config, deployment steps, or to remove CRA deprecation warnings by customizing the dev server, I can add instructions or implement those changes.

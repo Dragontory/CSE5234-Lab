@@ -225,3 +225,30 @@
   justify-content: flex-end;
   margin-top: 16px;
 }
+
+/* Card hover */
+.card { box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: transform .18s ease, box-shadow .18s ease; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 8px 22px rgba(0,0,0,0.12); }
+
+/* Cart overlay */
+.cart-overlay { position: absolute; right: 18px; top: 12px; z-index: 40; }
+.cart-overlay .cart-button { background: rgba(255,255,255,0.95); border: 1px solid #ddd; padding: 8px 12px; border-radius: 20px; cursor: pointer; }
+.cart-overlay .cart-panel { position: absolute; right: 0; top: 40px; width: 320px; background: #fff; border: 1px solid #e6e6e6; padding: 12px; border-radius: 8px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); opacity: 0; transform: translateY(-8px); pointer-events: none; transition: opacity .18s ease, transform .18s ease; }
+.cart-overlay.open .cart-panel { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.cart-overlay .cart-panel ul { list-style: none; padding: 0; margin: 0; }
+.cart-overlay .cart-panel li { padding: 6px 0; border-bottom: 1px dashed #eee; }
+.cart-overlay .cart-foot { margin-top: 8px; font-weight: 700; text-align: right; }
+
+/* About / Contact */
+.about-page .exec-list { display: flex; gap: 16px; }
+.about-page .exec { background: #fff; border-radius: 8px; padding: 12px; width: 220px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+.about-page .exec img { width: 100%; height: auto; }
+.contact-page { background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+
+/* Header tweaks */
+.site-header { position: sticky; top: 0; z-index: 30; }
+.nav-links a { margin-left: 12px; padding: 6px 8px; border-radius: 6px; transition: background .12s ease; }
+.nav-links a:hover { background: rgba(255,255,255,0.08); }
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }

@@ -7,6 +7,9 @@ import ShippingEntry from './components/shippingEntry';
 import ViewOrder from './components/viewOrder';
 import Confirmation from './components/Confirmation';
 import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
+import CartOverlay from './components/CartOverlay';
 
 function App() {
   return (
@@ -18,8 +21,11 @@ function App() {
           </div>
           <nav className="nav-links">
             <Link to="/purchase">Purchase</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
             <Link to="/purchase/viewOrder">View Order</Link>
           </nav>
+          <CartOverlay />
         </header>
         <main className="container">
           <Routes>

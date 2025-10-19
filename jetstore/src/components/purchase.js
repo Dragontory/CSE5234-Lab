@@ -25,21 +25,33 @@ export default function Purchase() {
 		setCart((c) => {
 			const existing = c.find((ci) => ci.id === item.id);
 			if (existing) {
-				return c.map((ci) => (ci.id === item.id ? { ...ci, qty: ci.qty + qty } : ci));
+					const updated = c.map((ci) => (ci.id === item.id ? { ...ci, qty: ci.qty + qty } : ci));
+					sessionStorage.setItem('cart', JSON.stringify(updated));
+					return updated;
 			}
-			return [...c, { ...item, qty }];
+				const updated = [...c, { ...item, qty }];
+				sessionStorage.setItem('cart', JSON.stringify(updated));
+				return updated;
 		});
 		setQuantities((q) => ({ ...q, [item.id]: 0 }));
 	}
 
 	function removeLine(id) {
-		setCart((c) => c.filter((ci) => ci.id !== id));
+			setCart((c) => {
+				const updated = c.filter((ci) => ci.id !== id);
+				sessionStorage.setItem('cart', JSON.stringify(updated));
+				return updated;
+			});
 	}
 
 	function updateLine(id, newQty) {
 		const qty = Math.max(0, parseInt(newQty || '0', 10));
 		if (qty === 0) return removeLine(id);
-		setCart((c) => c.map((ci) => (ci.id === id ? { ...ci, qty } : ci)));
+			setCart((c) => {
+				const updated = c.map((ci) => (ci.id === id ? { ...ci, qty } : ci));
+				sessionStorage.setItem('cart', JSON.stringify(updated));
+				return updated;
+			});
 	}
 
 	function proceedToPayment() {
