@@ -12,18 +12,14 @@ export default function Purchase({ addToCart }) {
 		axios
 			.get(API_URL)
 			.then((res) => {
-				// Parse the body if it's a string
-				const body = typeof res.data.body === "string"
-					? JSON.parse(res.data.body)
-					: res.data.body;
-
-				const items = body.items || [];
+				const items = res.data.items || [];
 				setCatalog(items);
-				setQuantities(items.reduce((acc, it) => ({ ...acc, [it.id]: 0 }), {}));
+				setQuantities(
+					items.reduce((acc, it) => ({ ...acc, [it.id]: 0 }), {})
+				);
 			})
 			.catch((err) => console.error("Failed to load catalog:", err));
 	}, []);
-
 
 	function handleQtyChange(id, value) {
 		const qty = Math.max(0, parseInt(value || "0", 10));
