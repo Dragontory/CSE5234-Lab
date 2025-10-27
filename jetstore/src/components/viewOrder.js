@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { placeOrder } from '../api';
 
 export default function ViewOrder({ cart, clearCart }) {
 	const navigate = useNavigate();
@@ -8,10 +9,20 @@ export default function ViewOrder({ cart, clearCart }) {
 
 	const total = cart.reduce((s, it) => s + it.price * it.qty, 0).toFixed(2);
 
-	function confirm() {
-    clearCart();
-		navigate('/purchase/viewConfirmation');
-	}
+	async function confirm() {
+  try {
+    const orderResult = await placeOrder(cart, payment, shipping);
+
+    sessionStorage.setItem('orderResult', JSON.stringify(orderResult));
+	sessionStorage.setItem('cartSnapshot', JSON.stringify(cart));
+
+  clearCart();
+      navigate('/purchase/viewConfirmation');
+    } catch (err) {
+      const msg = err?.response?.data?.message || err?.message || 'unknown error';
+      alert(`Order failed: ${msg}`);
+    }
+  }
 
 	return (
 		<div className="container">
