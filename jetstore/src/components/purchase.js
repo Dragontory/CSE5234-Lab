@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { INVENTORY_API } from "../api";
 
 export default function Purchase({ addToCart }) {
 	const [catalog, setCatalog] = useState([]);
 	const [quantities, setQuantities] = useState({});
 
 	useEffect(() => {
-		const API_URL =
-			"https://5tp6adhbsj.execute-api.us-east-2.amazonaws.com/dev/inventoryManagement";
-
 		axios
-			.get(API_URL)
+			.get(INVENTORY_API)
 			.then((res) => {
 				const items = res.data.items || [];
 				setCatalog(items);
-				setQuantities(
-					items.reduce((acc, it) => ({ ...acc, [it.id]: 0 }), {})
-				);
+				setQuantities(items.reduce((acc, it) => ({ ...acc, [it.id]: 0 }), {}));
 			})
 			.catch((err) => console.error("Failed to load catalog:", err));
 	}, []);
@@ -46,6 +42,10 @@ export default function Purchase({ addToCart }) {
 						/>
 						<h4>{item.name}</h4>
 						<p>${item.price.toLocaleString()}</p>
+						<p>
+							Remaining: {item.quantity} in stock
+						</p>
+
 						<div>
 							<label>
 								Qty:{" "}
@@ -53,9 +53,7 @@ export default function Purchase({ addToCart }) {
 									type="number"
 									min="0"
 									value={quantities[item.id] || 0}
-									onChange={(e) =>
-										handleQtyChange(item.id, e.target.value)
-									}
+									onChange={(e) => handleQtyChange(item.id, e.target.value)}
 								/>
 							</label>
 							<button
