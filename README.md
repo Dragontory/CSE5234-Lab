@@ -6,18 +6,6 @@ A small Create React App project named `jetstore` used for CSE5234 lab.
 
 This repository contains a React application scaffolded with Create React App (uses `react-scripts`). It includes simple components under `src/components/` and the usual CRA structure.
 
-## Prerequisites
-
-- Node.js (recommended LTS: 16.x or 18.x)
-- npm (comes with Node)
-
-Verify your environment in PowerShell:
-
-```powershell
-node -v
-npm -v
-```
-
 ## Install dependencies
 
 From the project root (`jetstore` folder):
@@ -35,12 +23,6 @@ Start the app:
 npm start
 ```
 
-If port 3000 is already in use, CRA will prompt to run on another port. To avoid the prompt and start on a specific port, set the `PORT` environment variable first (PowerShell):
-
-```powershell
-$env:PORT = "3001"; npm start
-```
-
 The app will be served at `http://localhost:3000` (or the port you choose).
 
 ## Build for production
@@ -49,50 +31,61 @@ The app will be served at `http://localhost:3000` (or the port you choose).
 npm run build
 ```
 
-The optimized build is written to the `build/` folder.
+## RDS MySQL - Connection & Schema
 
-## Run tests
+### Connection Info
 
-Interactive watch mode:
+user: admin  
+password: admin123  
+url: warehouse-db.c9koiciwmqnp.us-east-2.rds.amazonaws.com  
+port: 3306  
+database: warehouse_db
 
-```powershell
-npm test
-```
+### Schema
 
-Run tests once (non-watch) in PowerShell:
+```sql
+CREATE TABLE ITEM (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  ITEM_NUMBER INT,
+  NAME VARCHAR(255),
+  DESCRIPTION VARCHAR(255),
+  AVAILABLE_QUANTITY INT,
+  UNIT_PRICE DOUBLE
+);
 
-```powershell
-$env:CI = "true"; npm test -- --watchAll=false
-```
+CREATE TABLE SHIPPING_INFO (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  ADDRESS VARCHAR(255),
+  CITY VARCHAR(255),
+  STATE VARCHAR(255),
+  ZIP_CODE VARCHAR(20),
+  COUNTRY VARCHAR(50)
+);
 
-## Common issues & troubleshooting
+CREATE TABLE PAYMENT_INFO (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  CARD_NUMBER VARCHAR(50),
+  CARD_TYPE VARCHAR(20),
+  EXPIRATION_DATE VARCHAR(10),
+  BILLING_ADDRESS VARCHAR(255)
+);
 
-- Deprecation warnings from `webpack-dev-server` (e.g., about `onBeforeSetupMiddleware`) are harmless and come from dependencies (CRA/react-scripts). The dev server should still run.
-- If `npm start` appears stuck, check the terminal: CRA may be waiting for your input (for example, to accept running on a different port).
-- File watching can be unreliable when the project is stored inside OneDrive. If you see hot-reload or watcher errors, consider moving the repo to a local folder like `C:\Projects\jetstore` while developing.
-- To see which process is using a port (example for port 3000) in PowerShell:
+CREATE TABLE CUSTOMER_ORDER (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  CUSTOMER_NAME VARCHAR(255),
+  CUSTOMER_EMAIL VARCHAR(255),
+  SHIPPING_INFO_ID_FK INT,
+  PAYMENT_INFO_ID_FK INT,
+  STATUS VARCHAR(255) DEFAULT 'New',
+  FOREIGN KEY (SHIPPING_INFO_ID_FK) REFERENCES SHIPPING_INFO(ID),
+  FOREIGN KEY (PAYMENT_INFO_ID_FK) REFERENCES PAYMENT_INFO(ID)
+);
 
-```powershell
-Get-NetTCPConnection -LocalPort 3000 | Format-List
-(Get-NetTCPConnection -LocalPort 3000).OwningProcess
-Get-Process -Id (Get-NetTCPConnection -LocalPort 3000).OwningProcess
-```
-
-- To forcibly kill the process (use with care):
-
-```powershell
-# Replace <PID> with the actual process id
-Stop-Process -Id <PID> -Force
-```
-
-## Security / audits
-
-You may see `npm audit` reports after `npm install`. Try:
-
-```powershell
-npm audit
-npm audit fix
-```
-
-Use `npm audit fix --force` only if you are prepared to test for breaking changes.
-
+CREATE TABLE CUSTOMER_ORDER_LINE_ITEM (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  ITEM_ID INT,
+  ITEM_NAME VARCHAR(255),
+  QUANTITY INT,
+  CUSTOMER_ORDER_ID_FK INT,
+  FOREIGN KEY (CUSTOMER_ORDER_ID_FK) REFERENCES CUSTOMER_ORDER(ID)
+);
