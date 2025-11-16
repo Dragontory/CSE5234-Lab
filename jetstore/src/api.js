@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const API_BASE = "https://5tp6adhbsj.execute-api.us-east-2.amazonaws.com/dev";
+const API_BASE = "https://8lljmjq9li.execute-api.us-east-2.amazonaws.com/dev";
 
 export const INVENTORY_API =
-  "https://5tp6adhbsj.execute-api.us-east-2.amazonaws.com/dev/inventoryManagement";
+  `${API_BASE}/inventoryManagement/items`;
 
 const ORDER_API = `${API_BASE}/orderProcessing`;
 
