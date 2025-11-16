@@ -71,6 +71,8 @@ function App() {
           <nav className="nav-links">
             <Link to="/">Home</Link>
             <Link to="/purchase">Purchase</Link>
+            <Link to="/purchase/paymentEntry">Payment</Link>
+            <Link to="/purchase/shippingEntry">Shipping</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
           </nav>

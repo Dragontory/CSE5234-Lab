@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function ShippingEntry() {
+
+  const savedShipping = JSON.parse(sessionStorage.getItem('shipping') || 'null');
+
   const [name, setName] = useState('');
   const [addressLine1, setAddressLine1] = useState('');
   const [addressLine2, setAddressLine2] = useState('');
@@ -11,17 +14,14 @@ export default function ShippingEntry() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    try {
-      const cached = JSON.parse(sessionStorage.getItem('shipping') || 'null');
-      if (cached) {
-        setName(cached.name || '');
-        setAddressLine1(cached.addressLine1 || '');
-        setAddressLine2(cached.addressLine2 || '');
-        setCity(cached.city || '');
-        setUsState(cached.state || '');
-        setZip(cached.zip || '');
-      }
-    } catch {}
+    if (savedShipping) {
+      setName(savedShipping.name || '');
+      setAddressLine1(savedShipping.addressLine1 || '');
+      setAddressLine2(savedShipping.addressLine2 || '');
+      setCity(savedShipping.city || '');
+      setUsState(savedShipping.state || '');
+      setZip(savedShipping.zip || '');
+    }
   }, []);
 
   function validate() {
@@ -52,6 +52,7 @@ export default function ShippingEntry() {
   return (
     <div className="container">
       <h2 style={{ marginBottom: '16px', color: '#0b3d91' }}>Shipping Entry</h2>
+
       <form className="form-box" onSubmit={handleSubmit}>
         <div className="form-field">
           <label>Name:</label>

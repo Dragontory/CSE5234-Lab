@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function PaymentEntry() {
+
+	const savedPayment = JSON.parse(sessionStorage.getItem('payment') || 'null');
+
 	const [cardNumber, setCardNumber] = useState('');
 	const [expiry, setExpiry] = useState('');
 	const [cvv, setCvv] = useState('');
 	const [name, setName] = useState('');
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (savedPayment) {
+			setCardNumber(savedPayment.cardNumber || '');
+			setExpiry(savedPayment.expiry || '');
+			setCvv(savedPayment.cvv || '');
+			setName(savedPayment.name || '');
+		}
+	}, []);
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -18,6 +30,7 @@ export default function PaymentEntry() {
 	return (
 		<div className="container">
 			<h2 style={{ marginBottom: '16px', color: '#0b3d91' }}>Payment Entry</h2>
+
 			<form className="form-box" onSubmit={handleSubmit}>
 				<div className="form-field">
 					<label>Card Holder Name:</label>
@@ -28,6 +41,7 @@ export default function PaymentEntry() {
 						placeholder="John Doe"
 					/>
 				</div>
+
 				<div className="form-field">
 					<label>Card Number:</label>
 					<input
@@ -37,6 +51,7 @@ export default function PaymentEntry() {
 						placeholder="1234 5678 9012 3456"
 					/>
 				</div>
+
 				<div className="form-field">
 					<label>Expiry (MM/YY):</label>
 					<input
@@ -46,6 +61,7 @@ export default function PaymentEntry() {
 						placeholder="12/27"
 					/>
 				</div>
+
 				<div className="form-field">
 					<label>CVV:</label>
 					<input
@@ -56,6 +72,7 @@ export default function PaymentEntry() {
 						type="password"
 					/>
 				</div>
+
 				<button className="primary-action" type="submit">
 					Continue to Shipping
 				</button>

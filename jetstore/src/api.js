@@ -9,32 +9,28 @@ const ORDER_API = `${API_BASE}/orderProcessing`;
 
 export async function placeOrder(cartItems, payment, shipping) {
   const payload = {
-    // optional: pull customer info from storage or form
     customerName: payment.name || "Anonymous",
     customerEmail: payment.email || "",
 
-    // match Lambda expectation
     items: cartItems.map(it => ({
       id: it.id,
       name: it.name,
       quantity: it.qty
     })),
 
-    // payment fields your Lambda expects
     payment: {
       cardNumber: payment.cardNumber,
-      cardType: payment.cardType,
-      expirationDate: payment.expirationDate,
-      billingAddress: payment.billingAddress
+      cardType: "VISA",                    
+      expirationDate: payment.expiry,  
+      billingAddress: shipping.addressLine1
     },
 
-    // shipping fields your Lambda expects
     shipping: {
       address: shipping.addressLine1,
       city: shipping.city,
       state: shipping.state,
       zip: shipping.zip,
-      country: shipping.country
+      country: "United States" 
     }
   };
 
