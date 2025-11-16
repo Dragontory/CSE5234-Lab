@@ -20,18 +20,19 @@ export async function placeOrder(cartItems, payment, shipping) {
 
     payment: {
       cardNumber: payment.cardNumber,
-      cardType: "VISA",                    
-      expirationDate: payment.expiry,  
-      billingAddress: shipping.addressLine1
+      expiry: payment.expiry,
+      cvv: payment.cvv,
+      name: payment.name
     },
 
     shipping: {
-      address: shipping.addressLine1,
+      name: shipping.name,
+      addressLine1: shipping.addressLine1,
+      addressLine2: shipping.addressLine2,
       city: shipping.city,
       state: shipping.state,
-      zip: shipping.zip,
-      country: "United States" 
-    }
+      zip: shipping.zip
+    },
   };
 
   const { data } = await axios.post(ORDER_API, payload, {
