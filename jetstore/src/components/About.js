@@ -17,23 +17,23 @@ export default function About() {
         <div className="exec-list">
           <div className="exec">
             <img src="/assets/falcon.svg" alt="CEO"/>
-            <h4>Alex Skyler</h4>
-            <p><strong>CEO & Founder</strong> • With 20 years in aerospace engineering and a background from MIT, Alex is passionate about sustainable aviation and pushing the boundaries of flight.</p>
+            <h4>Xiaoyu Lai</h4>
+            <p><strong>Developer</strong></p>
           </div>
           <div className="exec">
             <img src="/assets/aurora.svg" alt="CTO"/>
-            <h4>Jordan Reed</h4>
-            <p><strong>Chief Technology Officer</strong> • A former test pilot and avionics expert from Stanford, Jordan leads our technology division, focusing on next-generation navigation and safety systems.</p>
+            <h4>Yuxi Lin</h4>
+            <p><strong>Developer</strong></p>
           </div>
           <div className="exec">
             <img src="/assets/hawk.svg" alt="COO"/>
-            <h4>Maria Valdez</h4>
-            <p><strong>Chief Operating Officer</strong> • Maria brings a decade of experience from leading logistics firms. She ensures every transaction is smooth and every client is satisfied.</p>
+            <h4>Saif Mohammed</h4>
+            <p><strong>Developer</strong></p>
           </div>
           <div className="exec">
             <img src="/assets/zephyr.svg" alt="Head of Sales"/>
-            <h4>Tom Chen</h4>
-            <p><strong>Head of Sales</strong> • A veteran sales leader with a passion for connecting clients with their dream aircraft. Tom believes in building long-term relationships based on trust.</p>
+            <h4>Tory Yang</h4>
+            <p><strong>Developer</strong></p>
           </div>
         </div>
       </section>
