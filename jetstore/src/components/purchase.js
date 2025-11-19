@@ -10,7 +10,13 @@ export default function Purchase({ addToCart }) {
 		axios
 			.get(INVENTORY_API)
 			.then((res) => {
-				const items = res.data.items || [];
+				const items = (res.data.items || []).map(item => {
+					const imageName = item.imageUrl.split('/').pop().replace('.svg', '.jpg');
+					return {
+						...item,
+						imageUrl: `/assets/${imageName}`
+					};
+				});
 				setCatalog(items);
 				setQuantities(items.reduce((acc, it) => ({ ...acc, [it.id]: 0 }), {}));
 			})

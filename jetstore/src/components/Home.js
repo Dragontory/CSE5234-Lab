@@ -27,7 +27,7 @@ export default function Home() {
         </div>
       </div>
       <div className="hero-right">
-        <img src="/assets/orion.svg" alt="Orion Cruiser" style={{ width: 320 }} />
+        <img src="/assets/orion.jpg" alt="Orion Cruiser" style={{ width: 320 }} />
       </div>
     </div>
   );

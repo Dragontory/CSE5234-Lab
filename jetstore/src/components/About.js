@@ -16,22 +16,22 @@ export default function About() {
         <h3>Meet our Executives</h3>
         <div className="exec-list">
           <div className="exec">
-            <img src="/assets/falcon.svg" alt="CEO"/>
+            <img src="/assets/falcon.jpg" alt="CEO"/>
             <h4>Xiaoyu Lai</h4>
             <p><strong>Developer</strong></p>
           </div>
           <div className="exec">
-            <img src="/assets/aurora.svg" alt="CTO"/>
+            <img src="/assets/aurora.jpg" alt="CTO"/>
             <h4>Yuxi Lin</h4>
             <p><strong>Developer</strong></p>
           </div>
           <div className="exec">
-            <img src="/assets/hawk.svg" alt="COO"/>
+            <img src="/assets/hawk.jpg" alt="COO"/>
             <h4>Saif Mohammed</h4>
             <p><strong>Developer</strong></p>
           </div>
           <div className="exec">
-            <img src="/assets/zephyr.svg" alt="Head of Sales"/>
+            <img src="/assets/zephyr.jpg" alt="Head of Sales"/>
             <h4>Tory Yang</h4>
             <p><strong>Developer</strong></p>
           </div>
