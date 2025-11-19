@@ -19,17 +19,18 @@ export default function ViewOrder({ cart, clearCart }) {
       clearCart();
       navigate('/purchase/viewConfirmation');
     } catch (err) {
-      const msg =
-        err?.response?.data?.message ||
-        err?.response?.data ||
-        err?.message ||
-        'unknown error';
-      alert('Order failed: ' + msg);
+      const raw = err?.response?.data || err;
+
+      // SIMPLE FIX: always show valid JSON
+      const msg = typeof raw === "string"
+        ? raw
+        : JSON.stringify(raw, null, 2);
+
+      alert("Order failed:\n" + msg);
       return;
-    } finally {
     }
   }
-  
+
   return (
     <div className="container">
       <h2 className="page-title">Review Your Order</h2>
@@ -61,7 +62,7 @@ export default function ViewOrder({ cart, clearCart }) {
           <p>
             {shipping && shipping.name && shipping.addressLine1 && shipping.city && shipping.state && shipping.zip
               ? `${shipping.name}, ${shipping.addressLine1}${shipping.addressLine2 ? ', ' + shipping.addressLine2 : ''
-                }, ${shipping.city}, ${shipping.state} ${shipping.zip}`
+              }, ${shipping.city}, ${shipping.state} ${shipping.zip}`
               : 'Not provided'}
           </p>
         </section>
