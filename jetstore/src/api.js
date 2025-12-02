@@ -7,22 +7,27 @@ export const INVENTORY_API =
 
 const ORDER_API = `${API_BASE}/orderProcessing`;
 
+export async function fetchInventory() {
+  const { data } = await axios.get(INVENTORY_API);
+  return data;
+}
+
 export async function placeOrder(cartItems, payment, shipping) {
   const payload = {
     customerName: payment.name || "Anonymous",
     customerEmail: payment.email || "",
 
-    items: cartItems.map(it => ({
+    items: cartItems.map((it) => ({
       id: it.id,
       name: it.name,
-      quantity: it.qty
+      quantity: it.qty,
     })),
 
     payment: {
       cardNumber: payment.cardNumber,
       expiry: payment.expiry,
       cvv: payment.cvv,
-      name: payment.name
+      name: payment.name,
     },
 
     shipping: {
@@ -31,7 +36,7 @@ export async function placeOrder(cartItems, payment, shipping) {
       addressLine2: shipping.addressLine2,
       city: shipping.city,
       state: shipping.state,
-      zip: shipping.zip
+      zip: shipping.zip,
     },
   };
 
