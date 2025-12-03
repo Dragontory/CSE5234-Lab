@@ -27,10 +27,9 @@ export default function Contact() {
     <div className="contact-page">
       <h2>Contact Us</h2>
       <p>
-        For support, returns, or inquiries, email
-        {" "}
-        <a href="mailto:support@jetstore.example">support@jetstore.example</a>
-        {" "}or call (555) 123-4567.
+        Have questions about a potential jet purchase or one of your acquisition orders? Email{" "}
+        <a href="mailto:support@jetstore.example">support@jetstore.example</a>{" "}
+        or call (555) 123-4567.
       </p>
 
       <div className="form-box" style={{ marginTop: 24 }}>
@@ -139,9 +138,9 @@ export default function Contact() {
         </thead>
         <tbody>
           {[
-            ["Orders / Billing", "Accounts", "billing@jetstore.example", "(555) 111-2222"],
-            ["Returns / Warranty", "Care", "returns@jetstore.example", "(555) 333-4444"],
-            ["Technical Help", "Support", "support@jetstore.example", "(555) 123-4567"],
+            ["Orders / Billing", "Accounts", "billing@jetstore.com", "(555) 111-2222"],
+            ["Returns / Warranty", "Care", "returns@jetstore.com", "(555) 333-4444"],
+            ["Technical Help", "Support", "support@jetstore.com", "(555) 123-4567"],
           ].map(([topic, team, email, phone]) => (
             <tr key={topic}>
               <td style={{ border: "1px solid #e5e7eb", padding: "10px 12px" }}>{topic}</td>

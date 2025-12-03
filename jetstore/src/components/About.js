@@ -1,19 +1,45 @@
+// src/components/About.js
 import React from 'react';
 
 export default function About() {
   return (
     <div className="about-page">
       <h2>About Jetstore</h2>
-      <p>At Jetstore we connect discerning pilots with premium private jets engineered for performance and comfort.</p>
+      <p>
+        Jetstore is a jet acquisition concierge. Instead of selling aircraft directly, we act as
+        your trusted middleman — coordinating everything from sourcing and negotiations to
+        inspections, legal work, and delivery.
+      </p>
       
-      <h3>Company Mission and Vision</h3>
-      <p>Our mission is to make private aviation accessible and enjoyable. We envision a future where personal flight is a seamless extension of your lifestyle, offering unparalleled freedom and efficiency.</p>
+      <h3>Mission & Vision</h3>
+      <p>
+        Our mission is to make private aviation purchases less intimidating and more transparent.
+        We envision a world where buying a jet feels as structured and guided as booking a flight:
+        clear steps, expert help, and no mystery fees.
+      </p>
 
-      <h3>Company Strategy</h3>
-      <p>We focus on three core pillars: curating a catalog of the world’s finest jets, providing a transparent and frictionless purchasing experience, and delivering world-class after-sales support. By integrating cutting-edge technology and personalized service, we aim to be the most trusted name in private aviation.</p>
+      <h3>How Our Service Works</h3>
+      <p>
+        When you pick a jet on Jetstore, you’re not “checking out” the aircraft itself. You’re
+        booking our <strong>acquisition service</strong> — typically a small percentage of the 
+        aircraft’s estimated price. In a real-world setting, that fee would cover:
+      </p>
+      <ul>
+        <li>Sourcing the best airframes from vetted brokers and owners</li>
+        <li>Coordinating pre-buy inspections and maintenance records review</li>
+        <li>Working with aviation attorneys, lenders, and insurers</li>
+        <li>Overseeing registration, import/export, and delivery logistics</li>
+      </ul>
+
+      <h3>Why This Works for Our Class Project</h3>
+      <p>
+        In this lab, Jetstore demonstrates an e-commerce flow for a high-ticket, service-based
+        business. We still use carts, checkout, and order confirmation — but what’s being
+        “purchased” is expertise and coordination, not the jet itself.
+      </p>
 
       <section className="execs">
-        <h3>Meet our Executives</h3>
+        <h3>Meet Our Team</h3>
         <div className="exec-list">
           <div className="exec">
             <img src="/assets/falcon.jpg" alt=""/>

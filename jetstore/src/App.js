@@ -1,9 +1,11 @@
-// App.js
+// src/App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Purchase from './components/purchase';
 import ViewOrder from './components/viewOrder';
+import PaymentEntry from './components/paymentEntry';
+import ShippingEntry from './components/shippingEntry';
 import Confirmation from './components/Confirmation';
 import Home from './components/Home';
 import About from './components/About';
@@ -70,7 +72,7 @@ function App() {
           </div>
           <nav className="nav-links">
             <Link to="/">Home</Link>
-            <Link to="/purchase">Purchase</Link>
+            <Link to="/purchase">Jets</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
           </nav>
@@ -90,15 +92,20 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/purchase" element={<Purchase addToCart={addToCart} />} />
             <Route path="/purchase/:id" element={<ProductDetail addToCart={addToCart} />} />
-
+            {/* Step 1: view cart */}
             <Route
               path="/purchase/viewOrder"
-              element={
-                <ViewOrder
-                  cart={cart}
-                  clearCart={clearCart}
-                />
-              }
+              element={<ViewOrder cart={cart} />}
+            />
+            {/* Step 2: shipping */}
+            <Route
+              path="/purchase/shippingEntry"
+              element={<ShippingEntry />}
+            />
+            {/* Step 3: payment + submit order */}
+            <Route
+              path="/purchase/paymentEntry"
+              element={<PaymentEntry clearCart={clearCart} />}
             />
             <Route path="/purchase/viewConfirmation" element={<Confirmation />} />
           </Routes>

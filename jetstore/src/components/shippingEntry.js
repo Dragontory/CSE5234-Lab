@@ -1,8 +1,8 @@
+// src/components/shippingEntry.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function ShippingEntry() {
-
   const savedShipping = JSON.parse(sessionStorage.getItem('shipping') || 'null');
 
   const [name, setName] = useState('');
@@ -25,8 +25,8 @@ export default function ShippingEntry() {
   }, []);
 
   function validate() {
-    if (!name || !addressLine1 || !addressLine2 || !city || !usState || !zip) {
-      alert('Please fill Name, Address Line 1, Address Line 2, City, State, and ZIP.');
+    if (!name || !addressLine1 || !city || !usState || !zip) {
+      alert('Please fill Name, Address Line 1, City, State, and ZIP.');
       return false;
     }
     if (!/^[A-Za-z]{2}$/.test(usState.trim())) {
@@ -46,12 +46,12 @@ export default function ShippingEntry() {
 
     const shipping = { name, addressLine1, addressLine2, city, state: usState, zip };
     sessionStorage.setItem('shipping', JSON.stringify(shipping));
-    navigate('/purchase/viewOrder');
+    navigate('/purchase/paymentEntry');
   }
 
   return (
     <div className="container">
-      <h2 style={{ marginBottom: '16px', color: '#0b3d91' }}>Shipping Entry</h2>
+      <h2 style={{ marginBottom: '16px', color: '#0b3d91' }}>Shipping Details</h2>
 
       <form className="form-box" onSubmit={handleSubmit}>
         <div className="form-field">
@@ -59,7 +59,7 @@ export default function ShippingEntry() {
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Jane Q. Student"
+            placeholder="Jane Q. Customer"
             required
             autoComplete="name"
           />
@@ -70,7 +70,7 @@ export default function ShippingEntry() {
           <input
             value={addressLine1}
             onChange={(e) => setAddressLine1(e.target.value)}
-            placeholder="123 College Ave"
+            placeholder="123 Jet Lane"
             required
             autoComplete="address-line1"
           />
@@ -81,8 +81,7 @@ export default function ShippingEntry() {
           <input
             value={addressLine2}
             onChange={(e) => setAddressLine2(e.target.value)}
-            placeholder="Apt / Unit"
-            required
+            placeholder="Suite / Unit (optional)"
             autoComplete="address-line2"
           />
         </div>
@@ -98,43 +97,46 @@ export default function ShippingEntry() {
           />
         </div>
 
-        <div className="form-field">
-          <label>State:</label>
-          <input
-            value={usState}
-            onChange={(e) => setUsState(e.target.value.toUpperCase())}
-            placeholder="OH"
-            maxLength={2}
-            required
-            pattern="[A-Za-z]{2}"
-            title="Two-letter state code (e.g., OH, NY)"
-            autoComplete="address-level1"
-          />
-        </div>
+        <div className="form-grid">
+          <div className="form-field">
+            <label>State:</label>
+            <input
+              value={usState}
+              onChange={(e) => setUsState(e.target.value.toUpperCase())}
+              placeholder="OH"
+              maxLength={2}
+              required
+              pattern="[A-Za-z]{2}"
+              title="Two-letter state code (e.g., OH, NY)"
+              autoComplete="address-level1"
+            />
+          </div>
 
-        <div className="form-field">
-          <label>ZIP:</label>
-          <input
-            value={zip}
-            onChange={(e) => setZip(e.target.value)}
-            placeholder="43210"
-            required
-            pattern="[0-9]{5}(-[0-9]{4})?"
-            title="5-digit ZIP or ZIP+4"
-            inputMode="numeric"
-            autoComplete="postal-code"
-          />
+          <div className="form-field">
+            <label>ZIP:</label>
+            <input
+              value={zip}
+              onChange={(e) => setZip(e.target.value)}
+              placeholder="43210"
+              required
+              pattern="[0-9]{5}(-[0-9]{4})?"
+              title="5-digit ZIP or ZIP+4"
+              inputMode="numeric"
+              autoComplete="postal-code"
+            />
+          </div>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 16 }}>
-          <button type="button" className="btn" onClick={() => navigate('/purchase')}>
-            Back to Shop
+          <button type="button" className="btn" onClick={() => navigate('/purchase/viewOrder')}>
+            Back to Cart
           </button>
           <button type="submit" className="primary-action">
-            Save & Continue
+            Continue to Payment
           </button>
         </div>
       </form>
     </div>
   );
 }
+

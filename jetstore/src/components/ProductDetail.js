@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { fetchInventory } from '../api';
 
-// Same helpers as in purchase.js — keep in sync!
 function getItemId(item) {
   const raw =
     item.id ??
@@ -30,26 +29,13 @@ function getImagesForItem(item) {
   const name = (item.name || '').toLowerCase();
   const imgs = [];
 
-  if (name.includes('orion')) {
-    imgs.push('/assets/orion.jpg');
-  }
-  if (name.includes('falcon')) {
-    imgs.push('/assets/falcon.jpg');
-  }
-  if (name.includes('hawk')) {
-    imgs.push('/assets/hawk.jpg');
-  }
-  if (name.includes('aurora')) {
-    imgs.push('/assets/aurora.jpg');
-  }
-  if (name.includes('zephyr')) {
-    imgs.push('/assets/zephyr.jpg');
-  }
+  if (name.includes('orion')) imgs.push('/assets/orion.jpg');
+  if (name.includes('falcon')) imgs.push('/assets/falcon.jpg');
+  if (name.includes('hawk')) imgs.push('/assets/hawk.jpg');
+  if (name.includes('aurora')) imgs.push('/assets/aurora.jpg');
+  if (name.includes('zephyr')) imgs.push('/assets/zephyr.jpg');
 
-  if (imgs.length === 0) {
-    imgs.push('/assets/orion.jpg');
-  }
-
+  if (imgs.length === 0) imgs.push('/assets/orion.jpg');
   return imgs;
 }
 
@@ -76,13 +62,10 @@ export default function ProductDetail({ addToCart }) {
 
         let arr = [];
 
-        if (Array.isArray(data)) {
-          arr = data;
-        } else if (Array.isArray(data?.items)) {
-          arr = data.items;
-        } else if (Array.isArray(data?.Items)) {
-          arr = data.Items;
-        } else if (typeof data?.body === 'string') {
+        if (Array.isArray(data)) arr = data;
+        else if (Array.isArray(data?.items)) arr = data.items;
+        else if (Array.isArray(data?.Items)) arr = data.Items;
+        else if (typeof data?.body === 'string') {
           try {
             const parsed = JSON.parse(data.body);
             if (Array.isArray(parsed)) arr = parsed;
@@ -132,6 +115,10 @@ export default function ProductDetail({ addToCart }) {
   const images = getImagesForItem(item);
   const currentImage = images[index];
 
+  const basePrice = Number(item.price ?? item.cost ?? 0);
+  const FEE_PERCENT = item.feePercent ?? 0.07;
+  const serviceFee = Math.round(basePrice * FEE_PERCENT);
+
   const nextImg = () => {
     if (!images.length) return;
     setIndex((prev) => (prev + 1) % images.length);
@@ -144,7 +131,13 @@ export default function ProductDetail({ addToCart }) {
 
   const handleAdd = () => {
     const qtyNum = Math.max(1, Number(qty) || 1);
-    const cartItem = { ...item, id: getItemId(item) }; // ensure `id` exists
+    const cartItem = {
+      ...item,
+      id: getItemId(item),
+      basePrice,
+      feePercent: FEE_PERCENT,
+      price: serviceFee,
+    };
     addToCart(cartItem, qtyNum);
   };
 
@@ -192,11 +185,17 @@ export default function ProductDetail({ addToCart }) {
         <div className="detail-info">
           <h2>{item.name}</h2>
           <p className="detail-price">
-            ${Number(item.price ?? item.cost ?? 0).toLocaleString()}
+            Acquisition service: ${serviceFee.toLocaleString()}
           </p>
+          <p style={{ fontSize: '0.9rem', color: '#4b5563' }}>
+            Estimated jet price: <strong>${basePrice.toLocaleString()}</strong> • Fee ≈{' '}
+            {(FEE_PERCENT * 100).toFixed(1)}%
+          </p>
+
           <p className="detail-description">
-            {item.description ||
-              'This jet delivers exceptional range, comfort, and performance for discerning pilots and passengers.'}
+            We act as your acquisition partner for the {item.name}. Our team handles sourcing,
+            negotiations, inspections, legal and financial coordination, and delivery logistics.
+            You pay a transparent service fee; we do the heavy lifting.
           </p>
 
           <div className="detail-specs">
@@ -223,7 +222,7 @@ export default function ProductDetail({ addToCart }) {
               />
             </label>
             <button type="button" className="primary-action" onClick={handleAdd}>
-              Add to Cart
+              Add Acquisition Service
             </button>
           </div>
 
@@ -237,4 +236,5 @@ export default function ProductDetail({ addToCart }) {
     </div>
   );
 }
+
 

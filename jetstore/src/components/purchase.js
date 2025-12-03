@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchInventory } from '../api';
 
-// Helper to derive a consistent ID for an item
+// Derive a consistent ID for an item
 function getItemId(item) {
-  // Prefer explicit IDs from backend, fall back to name as a slug
   const raw =
     item.id ??
     item.itemId ??
@@ -15,13 +14,11 @@ function getItemId(item) {
     item.name;
 
   if (!raw) return '';
-
   return String(raw);
 }
 
-// Helper to choose images for an item
+// Choose images for an item (middleman service still shows jets!)
 function getImagesForItem(item) {
-  // If backend eventually provides images, prefer those
   const apiImages =
     item.images ||
     item.imageUrls ||
@@ -31,31 +28,16 @@ function getImagesForItem(item) {
     return apiImages;
   }
 
-  // Otherwise, infer from the name using your existing /assets images
   const name = (item.name || '').toLowerCase();
   const imgs = [];
 
-  if (name.includes('orion')) {
-    imgs.push('/assets/orion.jpg');
-  }
-  if (name.includes('falcon')) {
-    imgs.push('/assets/falcon.jpg');
-  }
-  if (name.includes('hawk')) {
-    imgs.push('/assets/hawk.jpg');
-  }
-  if (name.includes('aurora')) {
-    imgs.push('/assets/aurora.jpg');
-  }
-  if (name.includes('zephyr')) {
-    imgs.push('/assets/zephyr.jpg');
-  }
+  if (name.includes('orion')) imgs.push('/assets/orion.jpg');
+  if (name.includes('falcon')) imgs.push('/assets/falcon.jpg');
+  if (name.includes('hawk')) imgs.push('/assets/hawk.jpg');
+  if (name.includes('aurora')) imgs.push('/assets/aurora.jpg');
+  if (name.includes('zephyr')) imgs.push('/assets/zephyr.jpg');
 
-  // If nothing matches, just give a generic jet image if you want
-  if (imgs.length === 0) {
-    imgs.push('/assets/orion.jpg'); // fallback; change if you have a better generic image
-  }
-
+  if (imgs.length === 0) imgs.push('/assets/orion.jpg');
   return imgs;
 }
 
@@ -97,10 +79,10 @@ function ImageCarousel({ images = [], alt }) {
 }
 
 export default function Purchase({ addToCart }) {
-  const [items, setItems] = useState([]); // normalized array of jets
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [rawData, setRawData] = useState(null); // debug only
+  const [rawData, setRawData] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -115,7 +97,6 @@ export default function Purchase({ addToCart }) {
         console.log('Inventory API raw response:', data);
         setRawData(data);
 
-        // Normalize a few common shapes (array, {items: [...]}, {Items: [...]}, etc.)
         let arr = [];
 
         if (Array.isArray(data)) {
@@ -153,12 +134,15 @@ export default function Purchase({ addToCart }) {
     };
   }, []);
 
+  const FEE_PERCENT = 0.07; // e.g. 7% middleman fee
+
   return (
     <div>
-      <h2 className="page-title">Jet Catalog</h2>
+      <h2 className="page-title">Jet Acquisition Services</h2>
       <p style={{ marginBottom: 8 }}>
-        Browse our curated selection of private jets. Click <strong>View Item</strong> for full
-        details or quickly add one to your cart.
+        We don’t sell jets directly — we manage the entire acquisition process for you.
+        Choose a jet you’re interested in and add our <strong>acquisition service</strong> to
+        your cart. Our fee is a small percentage of the jet’s estimated price.
       </p>
 
       {loading && <div>Loading catalog…</div>}
@@ -188,25 +172,27 @@ export default function Purchase({ addToCart }) {
           {items.map((item) => {
             const id = getItemId(item);
             const images = getImagesForItem(item);
-            const price =
-              item.price ??
-              item.cost ??
-              0;
 
-            // Make sure whatever we send to the cart has a proper `id`
-            const cartItem = { ...item, id, price };
+            const basePrice = Number(item.price ?? item.cost ?? 0);
+            const serviceFee = Math.round(basePrice * FEE_PERCENT);
+
+            const cartItem = {
+              ...item,
+              id,
+              basePrice,
+              feePercent: FEE_PERCENT,
+              price: serviceFee, // what the cart / checkout uses
+            };
 
             return (
               <article key={id} className="card">
                 <ImageCarousel images={images} alt={item.name} />
                 <h3 className="card-title">{item.name}</h3>
                 <p className="card-price">
-                  ${Number(price || 0).toLocaleString()}
+                  Acquisition service from ${serviceFee.toLocaleString()}
                 </p>
                 <p className="card-meta">
-                  {item.shortDescription ||
-                    item.description ||
-                    'Luxury performance jet.'}
+                  Estimated jet price: ${basePrice.toLocaleString()}
                 </p>
                 <div className="card-actions">
                   <button
@@ -214,13 +200,10 @@ export default function Purchase({ addToCart }) {
                     className="primary-action"
                     onClick={() => addToCart(cartItem, 1)}
                   >
-                    Add to Cart
+                    Add Service
                   </button>
-                  <Link
-                    to={`/purchase/${id}`}
-                    className="btn"
-                  >
-                    View Item
+                  <Link to={`/purchase/${id}`} className="btn">
+                    View Details
                   </Link>
                 </div>
               </article>
@@ -231,4 +214,5 @@ export default function Purchase({ addToCart }) {
     </div>
   );
 }
+
 
