@@ -7,111 +7,116 @@ export default function Home() {
     <>
       <div className="home-hero">
         <div className="hero-left">
-          <div className="hero-pill">Jet acquisition concierge</div>
-          <h1>Acquire your next jet with confidence, not guesswork.</h1>
+          <span className="hero-pill">Aircraft Acquisition Experts</span>
+
+          <h1>Welcome to Stratos Consulting</h1>
+
           <p>
-            Jetstore coordinates sourcing, negotiations, inspections, and delivery logistics
-            so you can focus on flying — not paperwork. Our transparent service fee aligns
-            us with your goals from day one.
+            Stratos Consulting is a premium aircraft acquisition and advisory firm.
+            We help clients navigate the full lifecycle of buying a private jet —
+            from market research and regulatory compliance to valuation, inspection,
+            negotiation, and delivery. Our goal is to turn a complex, high-risk
+            decision into a transparent, manageable process.
           </p>
 
           <div className="hero-actions">
             <Link to="/purchase" className="btn primary">
-              Browse Featured Jets
+              Explore Aircraft Options
             </Link>
             <Link to="/contact" className="btn">
-              Speak with Our Team
+              Contact Our Advisors
             </Link>
           </div>
 
           <div className="stats">
             <div className="stat">
-              <div className="stat-number">7%</div>
-              <div className="stat-label">Typical Service Fee</div>
+              <div className="stat-number">250+</div>
+              <div className="stat-label">Client Transactions</div>
             </div>
             <div className="stat">
-              <div className="stat-number">5</div>
-              <div className="stat-label">Featured Models</div>
+              <div className="stat-number">35–65</div>
+              <div className="stat-label">Typical Client Age</div>
             </div>
             <div className="stat">
-              <div className="stat-number">24/7</div>
-              <div className="stat-label">Client Support</div>
+              <div className="stat-number">15 yrs</div>
+              <div className="stat-label">Aviation Experience</div>
             </div>
           </div>
         </div>
 
         <div className="hero-right">
-          <img src="/assets/orion.jpg" alt="Orion jet flying above the clouds" />
+          <img
+            src="/assets/orion.jpg"
+            alt="Private jet flying above the clouds"
+          />
         </div>
       </div>
 
-      {/* How it works section */}
+      {/* Our Clients */}
       <section className="home-section">
-        <h2>How Jetstore Works</h2>
+        <h2>Who We Serve</h2>
         <p className="home-section-subtitle">
-          A streamlined process from “I’m interested” to first flight.
+          Our clients are high-net-worth individuals and corporate aviation teams
+          who expect expert representation for complex acquisitions.
+        </p>
+
+        <div className="home-grid">
+          <div>
+            <h3>Private Clients</h3>
+            <ul className="home-feature-list">
+              <li>High-net-worth individuals, typically ages 35–65</li>
+              <li>Value time, privacy, and convenience</li>
+              <li>Prefer expert guidance on high-value decisions</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Corporate Buyers</h3>
+            <ul className="home-feature-list">
+              <li>Mid-to-large companies and corporate flight departments</li>
+              <li>Executives acquiring jets for business travel and logistics</li>
+              <li>Teams focused on fleet expansion and operational reliability</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* How we help */}
+      <section className="home-section home-section-muted">
+        <h2>How Stratos Consulting Helps</h2>
+        <p className="home-section-subtitle">
+          We manage the entire acquisition lifecycle, from first conversation to final delivery.
         </p>
 
         <div className="home-steps">
           <div className="home-step">
             <div className="home-step-number">1</div>
-            <h3>Select a model</h3>
+            <h3>Market Research</h3>
             <p>
-              Explore our curated catalog of private jets and choose the airframes that best fit
-              your range, capacity, and budget requirements.
+              We evaluate the global market to identify aircraft that match your range,
+              budget, and mission profile.
             </p>
           </div>
           <div className="home-step">
             <div className="home-step-number">2</div>
-            <h3>Book our acquisition service</h3>
+            <h3>Valuation & Risk Review</h3>
             <p>
-              Add acquisition services to your cart and complete checkout. Our fee is a small,
-              transparent percentage of the aircraft’s estimated price.
+              Our team guides you through technical inspections, valuation, and
+              regulatory and financial considerations.
             </p>
           </div>
           <div className="home-step">
             <div className="home-step-number">3</div>
-            <h3>We handle the heavy lifting</h3>
+            <h3>Negotiation & Delivery</h3>
             <p>
-              From sourcing and pre-buy inspections to legal, financing, and delivery logistics,
-              our team keeps your acquisition on track.
+              We negotiate pricing and terms on your behalf, coordinate closing,
+              and oversee the delivery process.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Value props */}
-      <section className="home-section home-section-muted">
-        <div className="home-grid">
-          <div>
-            <h2>Why clients choose Jetstore</h2>
-            <p>
-              Buying a jet is a complex transaction with many moving parts. Jetstore gives you
-              a single point of contact and a proven process, so you always know what’s next.
-            </p>
-          </div>
-          <ul className="home-feature-list">
-            <li>
-              <strong>Transparent pricing</strong>
-              <span> — clear service fees with no surprise markups.</span>
-            </li>
-            <li>
-              <strong>End-to-end coordination</strong>
-              <span> — brokers, attorneys, lenders, and insurers under one roof.</span>
-            </li>
-            <li>
-              <strong>Curated inventory</strong>
-              <span> — hand-picked aircraft to fit a range of missions and budgets.</span>
-            </li>
-            <li>
-              <strong>Dedicated support</strong>
-              <span> — our team tracks every milestone until delivery.</span>
-            </li>
-          </ul>
         </div>
       </section>
     </>
   );
 }
+
 
 

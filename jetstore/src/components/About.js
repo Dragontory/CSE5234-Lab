@@ -4,65 +4,70 @@ import React from 'react';
 export default function About() {
   return (
     <div className="about-page">
-      <h2>About Jetstore</h2>
+      <h2>About Stratos Consulting</h2>
+
       <p>
-        Jetstore is a jet acquisition concierge. Instead of selling aircraft directly, we act as
-        your trusted middleman — coordinating everything from sourcing and negotiations to
-        inspections, legal work, and delivery.
-      </p>
-      
-      <h3>Mission &amp; Vision</h3>
-      <p>
-        Our mission is to make private aviation purchases less intimidating and more transparent.
-        We envision a world where buying a jet feels structured and guided: clear steps, expert
-        support, and no mystery fees.
+        Stratos Consulting is a premium aircraft acquisition and advisory firm.
+        We help clients navigate the full lifecycle of buying a private jet —
+        from market research and regulatory compliance to valuation, inspection,
+        negotiation, and delivery.
       </p>
 
-      <h3>How Our Service Works</h3>
+      <h3>Our Role</h3>
       <p>
-        When you pick a jet on Jetstore, you’re not checking out the aircraft itself. You’re
-        booking our <strong>acquisition service</strong> — typically a small percentage of the 
-        aircraft’s estimated price. That fee covers:
+        Buying an aircraft is a complex, high-stakes decision. Our job is to make
+        that process transparent and manageable. We act as an independent advisor
+        focused solely on our clients’ best interests — providing unbiased
+        recommendations, risk analysis, and end-to-end coordination.
       </p>
+
+      <h3>Who We Serve</h3>
+      <p>Our primary clients fall into two groups:</p>
       <ul>
-        <li>Sourcing the best airframes from vetted brokers and owners</li>
-        <li>Coordinating pre-buy inspections and maintenance records review</li>
-        <li>Working with aviation attorneys, lenders, and insurers</li>
-        <li>Overseeing registration, import/export, and delivery logistics</li>
+        <li>
+          <strong>High-net-worth individuals</strong> (typically ages 35–65) who value
+          time, privacy, and expert guidance when making high-value purchases.
+        </li>
+        <li>
+          <strong>Corporate aviation departments and executives</strong> at
+          mid-to-large companies who acquire jets for business travel, logistics,
+          or fleet expansion.
+        </li>
       </ul>
 
-      <h3>Why Clients Choose Us</h3>
       <p>
-        High-value purchases are complex. Our team brings structure, checklists, and a dedicated
-        point of contact to keep your acquisition moving. You stay in control of the big decisions
-        while we handle the day-to-day details behind the scenes.
+        These buyers want expert representation, unbiased advice, and a partner
+        who can manage legal, financial, and operational risks on their behalf.
+        That&apos;s the gap Stratos Consulting fills — we help clients make
+        confident, informed, and optimized aircraft acquisition decisions.
       </p>
 
       <section className="execs">
-        <h3>Meet Our Team</h3>
+        <h3>Our Team</h3>
         <div className="exec-list">
           <div className="exec">
-            <img src="/assets/falcon.jpg" alt=""/>
+            <img src="/assets/falcon.jpg" alt="" />
             <h4>Xiaoyu Lai</h4>
-            <p><strong>Developer</strong></p>
+            <p><strong>Lead Systems Architect</strong></p>
           </div>
           <div className="exec">
-            <img src="/assets/aurora.jpg" alt=""/>
+            <img src="/assets/aurora.jpg" alt="" />
             <h4>Yuxi Lin</h4>
-            <p><strong>Developer</strong></p>
+            <p><strong>Engineering Operations Lead</strong></p>
           </div>
           <div className="exec">
-            <img src="/assets/hawk.jpg" alt=""/>
+            <img src="/assets/hawk.jpg" alt="" />
             <h4>Saif Mohammed</h4>
-            <p><strong>Developer</strong></p>
+            <p><strong>Lead Engineering Strategist</strong></p>
           </div>
           <div className="exec">
-            <img src="/assets/zephyr.jpg" alt=""/>
+            <img src="/assets/zephyr.jpg" alt="" />
             <h4>Tory Yang</h4>
-            <p><strong>Developer</strong></p>
+            <p><strong>Lead Software Engineer</strong></p>
           </div>
         </div>
       </section>
     </div>
   );
 }
+

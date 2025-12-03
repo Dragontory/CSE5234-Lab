@@ -1,4 +1,14 @@
 /* App.css */
+:root {
+  --color-primary: #0b3d91;       /* deep aviation blue */
+  --color-primary-soft: #e0f2fe;  /* soft blue for pills/badges */
+  --color-accent: #1f7a3a;        /* complementary green */
+  --color-surface: #ffffff;
+  --color-surface-alt: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-text-main: #111827;
+  --color-text-muted: #6b7280;
+}
 
 /* Base */
 body {
@@ -16,7 +26,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
-  background: linear-gradient(90deg, #0b3d91, #1f7a3a);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
   color: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -92,7 +102,7 @@ body {
 .footer-logo {
   font-weight: 700;
   font-size: 1.1rem;
-  color: #111827;
+  color: var(--color-text-main);
   margin-bottom: 4px;
 }
 
@@ -103,7 +113,7 @@ body {
 }
 
 .footer-links a {
-  color: #4b5563;
+  color: var(--color-text-muted);
   text-decoration: none;
   font-size: 0.9rem;
 }
@@ -144,7 +154,7 @@ body {
   display: flex;
   justify-content: space-between;
   font-size: 0.78rem;
-  color: #9ca3af;
+  color: var(--color-text-muted);
   gap: 12px;
 }
 
@@ -232,13 +242,13 @@ body {
 }
 
 .btn.primary {
-  background: #0b66d1;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
   color: #fff;
-  border-color: #0b66d1;
 }
 
 .primary-action {
-  background: #0b66d1;
+  background: var(--color-primary);
   color: white;
   border: none;
   padding: 8px 14px;
@@ -249,7 +259,7 @@ body {
 
 .primary-action:hover,
 .btn.primary:hover {
-  background: #0a58b4;
+  background: #0a3477;
 }
 
 .stats {
@@ -406,7 +416,7 @@ body {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #0369a1;
+  color: var(--color-primary);
   background: #e0f2fe;
   border-radius: 999px;
   padding: 3px 8px;
@@ -422,7 +432,7 @@ body {
 
 .card-price {
   font-weight: 700;
-  color: #0b3d91;
+  color: var(--color-primary);
   margin: 4px 0 2px;
 }
 
@@ -556,7 +566,7 @@ body {
 
 /* Order / checkout sections */
 .page-title {
-  color: #0b3d91;
+  color: var(--color-primary);
   margin-bottom: 16px;
   text-align: center;
   font-size: 1.6rem;

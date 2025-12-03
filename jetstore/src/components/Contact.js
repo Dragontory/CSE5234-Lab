@@ -27,8 +27,8 @@ export default function Contact() {
     <div className="contact-page">
       <h2>Contact Us</h2>
       <p>
-        Have questions about a potential jet purchase or one of your acquisition orders? Email{" "}
-        <a href="mailto:support@jetstore.example">support@jetstore.example</a>{" "}
+        Have questions about a potential aircraft purchase or one of your acquisition orders? Email{" "}
+        <a href="mailto:support@stratosconsulting.example">support@stratosconsulting.example</a>{" "}
         or call (555) 123-4567.
       </p>
 
@@ -138,9 +138,9 @@ export default function Contact() {
         </thead>
         <tbody>
           {[
-            ["Orders / Billing", "Accounts", "billing@jetstore.com", "(555) 111-2222"],
-            ["Returns / Warranty", "Care", "returns@jetstore.com", "(555) 333-4444"],
-            ["Technical Help", "Support", "support@jetstore.com", "(555) 123-4567"],
+            ["Orders / Billing", "Accounts", "billing@stratosconsulting.com", "(555) 111-2222"],
+            ["Returns / Warranty", "Care", "returns@stratosconsulting.com", "(555) 333-4444"],
+            ["Technical Help", "Support", "support@stratosconsulting.com", "(555) 123-4567"],
           ].map(([topic, team, email, phone]) => (
             <tr key={topic}>
               <td style={{ border: "1px solid #e5e7eb", padding: "10px 12px" }}>{topic}</td>
@@ -163,7 +163,7 @@ export default function Contact() {
       <details style={{ borderTop: "1px solid #eef2f7", padding: "10px 0" }}>
         <summary style={{ cursor: "pointer", fontWeight: 600 }}>How do I start a return?</summary>
         <p>
-          Email <a href="mailto:returns@jetstore.example">returns@jetstore.example</a> with your
+          Email <a href="mailto:returns@stratosconsulting.example">returns@stratosconsulting.example</a> with your
           order ID. We will send a prepaid return label.
         </p>
       </details>

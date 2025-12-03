@@ -68,11 +68,11 @@ function App() {
       <div className="App">
         <header className="site-header">
           <div className="site-brand">
-            <Link to="/" className="brand-link">Jetstore</Link>
+            <Link to="/" className="brand-link">Stratos Consulting</Link>
           </div>
           <nav className="nav-links">
             <Link to="/">Home</Link>
-            <Link to="/purchase">Jets</Link>
+            <Link to="/purchase">Aircraft</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
           </nav>
@@ -113,7 +113,7 @@ function App() {
         <footer className="site-footer">
           <div className="footer-inner">
             <div className="footer-brand">
-              <div className="footer-logo">Jetstore</div>
+              <div className="footer-logo">Stratos Consulting</div>
               <p>Your private jet acquisition concierge.</p>
             </div>
 
@@ -141,7 +141,7 @@ function App() {
                 <span className="social-icon">X</span>
               </a>
               <a
-                href="mailto:sales@jetstore.example"
+                href="mailto:sales@stratosconsulting.example"
                 aria-label="Email"
               >
                 <span className="social-icon">@</span>
@@ -149,7 +149,7 @@ function App() {
             </div>
           </div>
           <div className="footer-bottom">
-            <span>© {new Date().getFullYear()} Jetstore. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Stratos Consulting — Aircraft Acquisition & Advisory. All rights reserved.</span>
             <span>Terms · Privacy</span>
           </div>
         </footer>
