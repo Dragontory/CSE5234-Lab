@@ -29,7 +29,7 @@ export default function CartOverlay({
       {isOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className="cart-panel" onClick={handlePanelClick}>
         <div className="cart-panel-header">
-          <h4>Your Services</h4>
+          <h4>Your services</h4>
           <button type="button" className="cart-close" onClick={closeCart}>
             ×
           </button>
@@ -40,7 +40,8 @@ export default function CartOverlay({
         ) : (
           <ul className="cart-items">
             {cart.map((it) => {
-              const lineTotal = (Number(it.price) || 0) * it.qty;
+              const fee = Number(it.price) || 0;
+              const lineTotal = fee * it.qty;
               return (
                 <li key={it.id} className="cart-item">
                   <div className="cart-item-info">
@@ -48,11 +49,11 @@ export default function CartOverlay({
                       {it.name} acquisition
                     </div>
                     <div className="cart-item-sub">
-                      {it.qty} × ${Number(it.price).toLocaleString()} service fee
+                      {it.qty} × ${fee.toLocaleString()} service fee
                     </div>
                     {it.basePrice && (
                       <div className="cart-item-sub">
-                        Jet est.: ${Number(it.basePrice).toLocaleString()}
+                        Aircraft estimate · ${Number(it.basePrice).toLocaleString()}
                       </div>
                     )}
                   </div>
@@ -61,6 +62,7 @@ export default function CartOverlay({
                       <button
                         type="button"
                         onClick={() => updateCartQuantity(it.id, it.qty - 1)}
+                        aria-label="Decrease quantity"
                       >
                         −
                       </button>
@@ -68,9 +70,13 @@ export default function CartOverlay({
                       <button
                         type="button"
                         onClick={() => updateCartQuantity(it.id, it.qty + 1)}
+                        aria-label="Increase quantity"
                       >
                         +
                       </button>
+                    </div>
+                    <div className="cart-line-total">
+                      ${lineTotal.toLocaleString()}
                     </div>
                     <button
                       type="button"
@@ -88,8 +94,10 @@ export default function CartOverlay({
 
         <div className="cart-foot">
           <div className="cart-total">
-            <span>Total service fees</span>
-            <strong>${Number(total).toLocaleString()}</strong>
+            <span className="cart-total-label">Total service fees</span>
+            <span className="cart-total-amount">
+              ${Number(total).toLocaleString()}
+            </span>
           </div>
           <Link
             to="/purchase/viewOrder"
@@ -103,5 +111,6 @@ export default function CartOverlay({
     </div>
   );
 }
+
 
 

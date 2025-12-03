@@ -19,16 +19,18 @@ function getItemId(item) {
 
 // Choose a base image per jet (by name)
 function getBaseImageForItem(item) {
-  const name = (item.name || '').toLowerCase();
+  const name = (item.name || '').toLowerCase().trim();
 
-  if (name.includes('orion')) return '/assets/orion.jpg';
-  if (name.includes('falcon')) return '/assets/falcon.jpg';
-  if (name.includes('hawk')) return '/assets/hawk.jpg';
-  if (name.includes('aurora')) return '/assets/aurora.jpg';
-  if (name.includes('zephyr')) return '/assets/zephyr.jpg';
+  let path;
+  if (name.includes('orion')) path = '/assets/orion.jpg';
+  else if (name.includes('falcon')) path = '/assets/falcon.jpg';
+  else if (name.includes('hawk')) path = '/assets/hawk.jpg';
+  else if (name.includes('sky')) path = '/assets/aurora.jpg';
+  else if (name.includes('eagle')) path = '/assets/zephyr.jpg';
+  else path = '/assets/generic-jet.jpg';
 
-  // Fallback generic image
-  return '/assets/orion.jpg';
+  console.log('Jet name:', item.name, '→ image:', path);
+  return path;
 }
 
 // For the catalog: each card gets a 5-frame slideshow of the same image
