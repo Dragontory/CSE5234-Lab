@@ -110,7 +110,50 @@ function App() {
             <Route path="/purchase/viewConfirmation" element={<Confirmation />} />
           </Routes>
         </main>
-        <footer className="site-footer">© Jetstore</footer>
+        <footer className="site-footer">
+          <div className="footer-inner">
+            <div className="footer-brand">
+              <div className="footer-logo">Jetstore</div>
+              <p>Your private jet acquisition concierge.</p>
+            </div>
+
+            <div className="footer-links">
+              <a href="/about">About</a>
+              <a href="/contact">Contact</a>
+              <a href="/purchase">Browse Jets</a>
+            </div>
+
+            <div className="footer-socials">
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+              >
+                <span className="social-icon">in</span>
+              </a>
+              <a
+                href="https://x.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="X / Twitter"
+              >
+                <span className="social-icon">X</span>
+              </a>
+              <a
+                href="mailto:sales@jetstore.example"
+                aria-label="Email"
+              >
+                <span className="social-icon">@</span>
+              </a>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <span>© {new Date().getFullYear()} Jetstore. All rights reserved.</span>
+            <span>Terms · Privacy</span>
+          </div>
+        </footer>
+
       </div>
     </BrowserRouter>
   );

@@ -71,7 +71,7 @@ export default function PaymentEntry({ clearCart }) {
 
   return (
     <div className="container">
-      <h2 style={{ marginBottom: '16px', color: '#0b3d91' }}>Payment & Confirmation</h2>
+      <h2 className="page-title">Payment & Confirmation</h2>
 
       <div className="checkout-layout">
         <section className="form-box checkout-summary">

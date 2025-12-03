@@ -11,18 +11,18 @@ export default function About() {
         inspections, legal work, and delivery.
       </p>
       
-      <h3>Mission & Vision</h3>
+      <h3>Mission &amp; Vision</h3>
       <p>
         Our mission is to make private aviation purchases less intimidating and more transparent.
-        We envision a world where buying a jet feels as structured and guided as booking a flight:
-        clear steps, expert help, and no mystery fees.
+        We envision a world where buying a jet feels structured and guided: clear steps, expert
+        support, and no mystery fees.
       </p>
 
       <h3>How Our Service Works</h3>
       <p>
-        When you pick a jet on Jetstore, you’re not “checking out” the aircraft itself. You’re
+        When you pick a jet on Jetstore, you’re not checking out the aircraft itself. You’re
         booking our <strong>acquisition service</strong> — typically a small percentage of the 
-        aircraft’s estimated price. In a real-world setting, that fee would cover:
+        aircraft’s estimated price. That fee covers:
       </p>
       <ul>
         <li>Sourcing the best airframes from vetted brokers and owners</li>
@@ -31,11 +31,11 @@ export default function About() {
         <li>Overseeing registration, import/export, and delivery logistics</li>
       </ul>
 
-      <h3>Why This Works for Our Class Project</h3>
+      <h3>Why Clients Choose Us</h3>
       <p>
-        In this lab, Jetstore demonstrates an e-commerce flow for a high-ticket, service-based
-        business. We still use carts, checkout, and order confirmation — but what’s being
-        “purchased” is expertise and coordination, not the jet itself.
+        High-value purchases are complex. Our team brings structure, checklists, and a dedicated
+        point of contact to keep your acquisition moving. You stay in control of the big decisions
+        while we handle the day-to-day details behind the scenes.
       </p>
 
       <section className="execs">

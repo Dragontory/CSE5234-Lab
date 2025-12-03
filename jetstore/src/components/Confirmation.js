@@ -16,24 +16,34 @@ export default function Confirmation() {
 
   return (
     <div className="container">
-      <h2 className="page-title">Thank you for booking with Jetstore!</h2>
+      <h2 className="page-title">Thank you — your request is confirmed</h2>
 
       <div className="form-box">
         <div className="order-section">
           <p>
-            Your acquisition request has been received. Your reference number is{' '}
+            We’ve received your jet acquisition service request. Your reference number is{' '}
             <strong>{confirmationNumber}</strong>.
           </p>
           {paymentLast4 && (
             <p>
-              Paid with card ending in <strong>{paymentLast4}</strong>.
+              Payment has been authorized on the card ending in <strong>{paymentLast4}</strong>.
             </p>
           )}
           {shipTo && (
             <p>
-              Primary contact / delivery address: <strong>{shipTo}</strong>
+              Primary contact / correspondence address:{' '}
+              <strong>{shipTo}</strong>
             </p>
           )}
+          <p style={{ marginTop: 8 }}>
+            A member of our acquisition team will reach out within <strong>1–2 business days</strong>{' '}
+            to review your requirements, discuss aircraft options, and outline next steps.
+          </p>
+          <p style={{ marginTop: 8, fontSize: '0.9rem', color: '#6b7280' }}>
+            If you need immediate assistance, email{' '}
+            <a href="mailto:support@jetstore.example">support@jetstore.example</a> or call
+            (555) 123-4567 with your reference number.
+          </p>
         </div>
 
         <div className="order-section">
@@ -51,11 +61,12 @@ export default function Confirmation() {
             <p>Order items are not available.</p>
           )}
           <p>
-            <strong>Total service fees paid: ${total}</strong>
+            <strong>Total service fees: ${total}</strong>
           </p>
         </div>
       </div>
     </div>
   );
 }
+
 

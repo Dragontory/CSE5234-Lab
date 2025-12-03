@@ -51,7 +51,7 @@ export default function ShippingEntry() {
 
   return (
     <div className="container">
-      <h2 style={{ marginBottom: '16px', color: '#0b3d91' }}>Shipping Details</h2>
+      <h2 className="page-title">Shipping Details</h2>
 
       <form className="form-box" onSubmit={handleSubmit}>
         <div className="form-field">
